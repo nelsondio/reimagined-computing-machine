@@ -1,0 +1,12 @@
+from 
+developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools_deployment
+
+git remote add github https://github.com/nelsondio/reimagined-computing-machine.git
+
+git push github main // it did not work
+git push github master // it did work
+
+now the repository is there
+It asked for nelsondio and Winter arroba cc four digits
+
+
