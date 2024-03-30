@@ -2,11 +2,11 @@
 // import Pocketbase from "pocketbase";
 import LayoutApp from "@layouts/LayoutApp.astro";
 import ProjectCard from "@components/app/projects/ProjectCard.astro";
-import ProjectCardStarred from "@components/app/projects/ProjectCardStarred.astro";
+
 import AddNewProjectCard from "@components/app/projects/AddNewProjectCard.astro";
 import { getProjects } from "@data/pocketbase";
 import HamburgerMenuButton from "@components/app/HamburgerMenuButton.astro";
-import ProjectStatus from "@components/app/projects/ProjectStatus.astro";
+
 import TasksList from "@components/app/tasks/TasksList.astro";
 
 const projects = await getProjects();

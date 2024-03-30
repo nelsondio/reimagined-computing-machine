@@ -6,8 +6,12 @@ import type {
   TasksRecord,
   TasksResponse,
 } from '@src/data/pocketbase-types'
+
 // Note: we’ll have to re-run the npx pocketbase-typegen command we used above any time we edit the collections, as they are not kept in sync automatically.
 
+type TexpandProject = {
+  project?: ProjectsResponse
+}
 function getStatus(project: ProjectsResponse) {
   // function getStatus(project: ) {
   switch (project.status) {
