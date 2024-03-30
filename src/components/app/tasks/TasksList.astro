@@ -1,0 +1,63 @@
+---
+import { getTasks, getStarredTasks } from "@data/pocketbase";
+import ButtonDeleteTask from "@components/app/tasks/ButtonDeleteTask.astro";
+import ButtonCompleteTask from "@components/app/tasks/ButtonCompleteTask.astro";
+import ButtonStarTask from "@components/app/tasks/ButtonStarTask.astro";
+import TaskText from "@components/app/tasks/TaskText.astro";
+
+const { project_id, done, starred } = Astro.props;
+
+// const tasks = await getTasks({ project_id, done });
+let tasks = null;
+
+if (starred) {
+  tasks = await getStarredTasks();
+} else {
+  tasks = await getTasks({ project_id, done });
+}
+// console.log('=============================== TaksList : line 10 ')
+// console.log(starred);
+---
+
+<div>
+  {
+    // tasks.length === 0 && (
+    tasks.length === 0 && !starred && (
+      <p class="text-center text-zinc-900 dark:text-white pb-10">Nothing yet</p>
+    )
+  }
+
+  <ul class="space-y-6 mb-10">
+    {
+      tasks.map((task) => (
+        <li>
+          <div class="flex justify-between bg-blue-800 space-x-4 items-center">
+            <div>
+              <ButtonCompleteTask task={task} />
+            </div>
+
+            <div>
+              <ButtonStarTask task={task} />
+            </div>
+
+            <TaskText task={task} />
+
+            {starred ? (
+              <div>
+                <a href={`/app/project/${task.project}`}>
+                  <span class="border mt-0 py-0.5 px-2 self-start rounded-md bg-zinc-800 text-sm font-bold hidden sm:block">
+                    {task.expand?.project?.name}
+                  </span>
+                </a>
+              </div>
+            ) : (
+              <div>
+                <ButtonDeleteTask task={task} />
+              </div>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
